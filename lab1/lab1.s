@@ -1,57 +1,63 @@
 section .data
-	a dd 1
-	a_len equ $-a
-	b dw 1
-	b_len equ $-b
-	c dd 1
-	c_len equ $-c
-	d dw 1
-	d_len equ $-d
-	e dd 4
-	e_len equ $-e
+	a: dd 4
+	a_len: equ $-a
+	b: dw 2
+	b_len: equ $-b
+	c: dd 1
+	c_len: equ $-c
+	d: dw 1
+	d_len: equ $-d
+	e: dd 2
+	e_len: equ $-e
+	res: dd 0
+	res_len: equ $-res
 
 section .text
 	global _start
 
 _start:
-	mov eax, 3
-	mov ebx, 1
-	lea ecx, [a]
-	mov edx, a_len
-	int 0x80
-	mov eax, 3
-	mov ebx, 1
-	lea ecx, [b]
-	mov edx, b_len
-	int 0x80
-        mov eax, 3
-        mov ebx, 1
-        lea ecx, [c]
-        mov edx, c_len
-        int 0x80
-        mov eax, 3
-        mov ebx, 1
-        lea ecx, [d]
-        mov edx, d_len
-        int 0x80
-        mov eax, 3
-        mov ebx, 1
-        lea ecx, [e]
-        mov edx, e_len
-        int 0x80
+	mov eax, dword [c]
+	movzx ebx, word [d]
+	mov ecx, dword[e]
+	mul ebx
+	mul ecx
+	mov dword[res], eax
 	mov eax, dword [a]
 	movzx ebx, word [b]
-	sub eax, '0'
-	sub ebx, '0'
+	mov ecx, dword[c]
 	mul ebx
+	mul ecx
+	mov ebx, dword[res]
+	sub eax,ebx
+	mov dword[res], eax
+	mov eax, dword [a]
+	movzx ebx, word [b]
+	jz error
+	div ebx
+	mov dword[e], eax
+	mov eax, dword [c]
+	movzx ebx, word [d]
+	jz error
+	div ebx
+	mov ebx, dword[e]
+	add eax, ebx
+	mov ebx, eax
+	mov eax, dword[res]
+	div ebx
 	add eax, '0'
-	add ebx, '0'
-	mov dword [a], eax
+	mov dword[res], eax
 	int 0x80
         mov eax, 4
         mov ebx, 1
-        mov ecx, a
-        mov edx, 1
+        lea ecx, [res]
+        mov edx, res_len
 	int 0x80
 	mov eax, 1
+	mov ebx, 0
 	int 0x80
+
+error:
+	mov ebx, 1
+	mov eax, 1
+	int 0x80
+

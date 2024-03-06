@@ -1,11 +1,11 @@
 section .data
 	a: dd 4
 	a_len: equ $-a
-	b: dw 2
+	b: dw 0
 	b_len: equ $-b
-	c: dd 1
+	c: dd 4
 	c_len: equ $-c
-	d: dw 0
+	d: dw 2
 	d_len: equ $-d
 	e: dd 2
 	e_len: equ $-e
@@ -33,7 +33,7 @@ _start:
 	jc error
 	mov ebx, dword[res]
 	sub eax,ebx
-	jc error
+	jo error
 	mov dword[res], eax
 	mov eax, dword [a]
 	movzx ebx, word [b]
@@ -51,8 +51,8 @@ _start:
 	jc error
 	mov ebx, eax
 	mov eax, dword[res]
-	div ebx
-	add eax, '0'
+	idiv ebx
+	;add eax, '0'
 	mov dword[res], eax
 	int 0x80
         mov eax, 4

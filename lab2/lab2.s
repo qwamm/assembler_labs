@@ -23,15 +23,8 @@ global  _start
 _start:
         mov     rcx, [m]
         cmp     rcx, 1
-        jle     m13
+        jle     m15
         mov     rbx, matrix_1
-	mov rdi, 0
-	mov rsi, matrix_1
-	l1:
-		mov [adress + 8*rdi], rsi
-		add rsi, 8
-		inc rdi
-		loop l1
 	mov rcx, [m]
         xor rdi, rdi
         xor rsi, rsi
@@ -40,7 +33,7 @@ m1:
 	mov rcx, [n]
 	dec rcx
 	test rcx, rcx
-	jz m13
+	jz m15
 	mov rdi, 0
 m2:
 	mov rcx, [n]
@@ -65,6 +58,7 @@ m4:
 	mov rdi, [m]
 	sub rdi, rcx
 	mov rax, [sum + 8*rdi]
+	mov r9, rdi
 	mov rdx, rdi
 	dec rdx
 m5:
@@ -119,17 +113,49 @@ m11:
 	mov rax, [sum + 8*rdi]
 	inc rdi
 	loop m11
+	;mov rcx, [m]
+	;mov rdi, 0
+	;l2:
+	;	mov rax, [adress + 8*rdi]
+	;	inc rdi
+	;	loop l2
 	mov rcx, [m]
 	mov rdi, 0
-	l2:
-        	mov rax, [sum + 8*rdi]
-        	inc rdi
-       		loop l2
 m12:
+	mov rax, [adress + 8*rdi]
+	mov r10, rcx
+	mov r9, rdi
+	mov r8, rax
+	mov rcx,[n]
+	l3:
+		mov rbx, [matrix_1 + 8*r8]
+		mov [matrix_2 + 8*rdi], rbx
+		add r8, [m]
+		add rdi, [m]
+		loop l3
+	mov rdi, r9
+	mov rcx, r10
+	inc rdi
+	loop m12
+	mov rcx, [m]
+	mov rdi, 0
+m13:
+	mov r9, rcx
+	mov r10, rdi
+	mov rcx, [n]
+	l4:
+		 mov rax, [matrix_2 + 8*rdi]
+		 add rdi, [m]
+		 loop l4
+	mov rcx, r9
+	mov rdi, r10
+	inc rdi
+	loop m13
+m14:
 	mov rax, 60
 	mov rbx, 0
 	syscall
-m13:
+m15:
 	mov rax, 60
 	mov rbx, 1
 	syscall

@@ -4,20 +4,22 @@ section .data
 n:
         dq      3
 m:
-        dq      5
+        dq      4
+
 matrix_1:
-        dq      4, 6, 1, 8, 2
-        dq      9, 2, 3, 4, 5
-        dq      0, -7, 3, -1, -1
+        dq      -4, 0, 3, 6
+        dq      9, -4, 10, 1
+        dq      6, 8, 6, -2
+
 matrix_2:
-        dq      0, 0, 0, 0, 0
-        dq      0, 0, 0, 0, 0
-        dq      0, 0, 0, 0, 0
+        dq      0, 0, 0, 0
+        dq      0, 0, 0, 0
+        dq      0, 0, 0, 0
 
 sum:
-        dq      0, 0, 0, 0, 0
+        dq      0, 0, 0, 0
 adress:
-	dq	0, 1, 2, 3, 4
+	dq	0, 1, 2, 3
 section .text
 global  _start
 _start:
@@ -64,7 +66,7 @@ m4:
 m5:
 	cmp rdx, rsi
 	js m8
-	je m8
+	;je m8
 	mov r10, rdx
 	add r10, rsi
 	shr r10, 1
@@ -74,6 +76,7 @@ m5:
 	jmp m6
 
 m6:
+	dec r10
 	mov rdx, r10
 	jmp m5
 

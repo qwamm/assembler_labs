@@ -60,9 +60,9 @@ m1:
 m2:
 	inc rdi
 	cmp byte [rdi], ' '
-	je m3
+	je m9
         cmp byte [rdi], 9
-        je m8
+        je m9
    	cmp byte [rdi], 10
    	je m5
    	movzx r8, byte [rdi]
@@ -77,10 +77,7 @@ m3:
         je m7
         cmp byte [rdi], 10
         je m5
-	movzx r8, byte [rdi]
-	mov [rdx], r8
         inc rdi
-        inc rdx
 	loop m3
 
 m4:
@@ -88,7 +85,7 @@ m4:
         cmp byte [rdi], ' '
         je m3
         cmp byte [rdi], 9
-        je m3
+        je m8
         cmp byte [rdi], 10
         je m5
         loop m4
@@ -116,10 +113,6 @@ m6:
                 jmp m4
 
 m7:
-	;movzx r8, byte [rdi]
-        ;mov [rdx], r8
-	;inc rdx
-	;inc rdi
 	jmp m1
 
 m8:
@@ -129,8 +122,16 @@ m8:
         je m5
         cmp byte [rdi], 9
         jne m7
-        movzx r8, byte [rdi]
-        mov [rdx], r8
+        inc rdi
+        loop m8
+
+m9:
+	;mov r8, ' '
+        mov byte [rdx], ' '
         inc rdi
         inc rdx
-        loop m8
+        cmp byte [rdi], ' '
+        je m3
+        cmp byte [rdi], 9
+        je m8
+        jmp m1

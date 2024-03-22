@@ -1,7 +1,7 @@
 bits 64
 
 section .data
-	file_name dd "/home/qurst/assembler_labs/lab3/in.txt"
+	file_name dd "/home/fdfdas/assembler_labs/lab3/in.txt"
 	;msg db "Welcome to Tutorials Point"
 	;msg_len equ  $-msg
 	consonants db "aeiouAEIOU"
@@ -61,6 +61,8 @@ m2:
 	inc rdi
 	cmp byte [rdi], ' '
 	je m3
+        cmp byte [rdi], 9
+        je m8
    	cmp byte [rdi], 10
    	je m5
    	movzx r8, byte [rdi]
@@ -71,6 +73,8 @@ m2:
 m3:
         cmp byte [rdi], ' '
         jne m7
+        cmp byte [rdi], 9
+        je m7
         cmp byte [rdi], 10
         je m5
 	movzx r8, byte [rdi]
@@ -82,6 +86,8 @@ m3:
 m4:
         inc rdi
         cmp byte [rdi], ' '
+        je m3
+        cmp byte [rdi], 9
         je m3
         cmp byte [rdi], 10
         je m5
@@ -115,3 +121,16 @@ m7:
 	;inc rdx
 	;inc rdi
 	jmp m1
+
+m8:
+        cmp byte [rdi], ' '
+        je m3
+        cmp byte [rdi], 10
+        je m5
+        cmp byte [rdi], 9
+        jne m7
+        movzx r8, byte [rdi]
+        mov [rdx], r8
+        inc rdi
+        inc rdx
+        loop m8

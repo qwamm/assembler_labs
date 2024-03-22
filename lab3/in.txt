@@ -1,6 +1,2 @@
-Oompares  g r t g t4r g  tr g4t grt g 4t    er er  -ee 0a a y 		a	kkk	u	lll  34r 3545  r gt  the memory byte or word addressed in the destination register relative to the ES segment with the contents of the AL, AX, or EAX register. The result is discarded; only the flags are set.
+Oompares  g r t g t4r g  tr g4t grt g 4t a   er er  -ee 0a a y 		a	kkk	u	lll  34r 3545  r gt  the memory byte or word addressed in the destination register relative to the ES segment with the contents of the AL, AX, or EAX register.
 
-fghjihgfh   rtru   ooo    i i i i i u 
-fghjk
-
-uiuo 

@@ -1,1 +1,6 @@
-The no-operands form of the instruction uses a short form of SCAS. Again, ES:(E)DI is assumed to be the memory
+Oompares  g r t g t4r g  tr g4t grt g 4t    er er  -ee 0a a y 		a	kkk	u	lll  34r 3545  r gt  the memory byte or word addressed in the destination register relative to the ES segment with the contents of the AL, AX, or EAX register. The result is discarded; only the flags are set.
+
+fghjihgfh   rtru   ooo    i i i i i u 
+fghjk
+
+uiuo 

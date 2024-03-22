@@ -4,7 +4,7 @@ section .data
 	file_name dd "/home/qurst/assembler_labs/lab3/in.txt"
 	;msg db "Welcome to Tutorials Point"
 	;msg_len equ  $-msg
-	consonants db "aeiou"
+	consonants db "aeiouAEIOU"
 	con_len equ $-consonants
 	n db 0
 
@@ -40,20 +40,18 @@ _start:
 	mov rdx, new_str
 
 m1:
-        cmp byte [rdi], -1
+        cmp byte [rdi], 10
         je m5
-	movzx rax, byte [rdi]
 	mov r10, rcx
 	mov r9, rdi
-	mov rcx, con_len
-	mov rdi, consonants
         l1:
-      		movzx r11, byte [rdi]
-      		cmp rax, r11
+		mov al, byte [rdi]
+		mov ecx, con_len
+		mov edi, consonants
+		cld
+		repne scasb
 		je m6
-		inc rdi
-		loop l1
-		mov [rdx], rax
+		mov [rdx], al
 		inc rdx
 		mov rcx, r10
 		mov rdi, r9

@@ -1,11 +1,12 @@
 bits 64
 
 section .data
-	file_name dd "/home/fdfdas/assembler_labs/lab3/in.txt"
-	msg db "Welcome to Tutorials Point"
-	msg_len equ  $-msg
+	file_name dd "/home/qurst/assembler_labs/lab3/in.txt"
+	;msg db "Welcome to Tutorials Point"
+	;msg_len equ  $-msg
 	consonants db "aeiou"
 	con_len equ $-consonants
+	n db 0
 
 section .bss
 	str: resb 1024
@@ -31,58 +32,65 @@ _start:
 	mov rsi, str
 	mov rdx, 1024
 	syscall
+	;mov [n], rax
 
-	mov rdi, -1
+	mov rdi, str
+	;dec rdi
 	mov rcx, str_len
+	mov rdx, new_str
 
 m1:
-	inc rdi
-        cmp byte [str + 2*rdi], -1
+        cmp byte [rdi], -1
         je m5
-	lea rax, [str + 2*rdi]
+	movzx rax, byte [rdi]
 	mov r10, rcx
 	mov r9, rdi
 	mov rcx, con_len
-	mov rdi, 0
+	mov rdi, consonants
         l1:
-		cmp rax, [consonants + 2*rdi]
-		je m4
+      		movzx r11, byte [rdi]
+      		cmp rax, r11
+		je m6
 		inc rdi
 		loop l1
-                mov rcx, r10
-                mov rdi, r9
-		mov [new_str + rdi], rax
+		mov [rdx], rax
+		inc rdx
+		mov rcx, r10
+		mov rdi, r9
 		jmp m2
 
 m2:
 	inc rdi
-	cmp byte [str + rdi], ' '
+	cmp byte [rdi], ' '
 	je m3
-        cmp byte [str + rdi], -1
-        je m5
-   mov r8, [str + rdi]
-	mov [new_str + rdi], r8
+   	cmp byte [rdi], 10
+   	je m5
+   	movzx r8, byte [rdi]
+	mov [rdx], r8
+	inc rdx
 	loop m2
 
 m3:
-   mov r8, [str + rdi]
-	mov [new_str + rdi], r8
-	inc rdi
-	cmp byte [str + rdi], ' '
-	jne m1
-	cmp byte [str + rdi], -1
-	je m5
+        cmp byte [rdi], ' '
+        jne m7
+        cmp byte [rdi], 10
+        je m5
+	movzx r8, byte [rdi]
+	mov [rdx], r8
+        inc rdi
+        inc rdx
 	loop m3
 
 m4:
         inc rdi
-        cmp byte [str + rdi], ' '
+        cmp byte [rdi], ' '
         je m3
-        cmp byte [str + rdi], -1
+        cmp byte [rdi], 10
         je m5
-        loop m2
+        loop m4
 
 m5:
+	;new_str output
 	mov rax, 1
 	mov rdi, 1
 	lea rsi, [new_str]
@@ -97,3 +105,15 @@ m5:
         mov rax, 60
         mov rdi, 0
         syscall
+
+m6:
+                mov rcx, r10
+                mov rdi, r9
+                jmp m4
+
+m7:
+	;movzx r8, byte [rdi]
+        ;mov [rdx], r8
+	;inc rdx
+	;inc rdi
+	jmp m1

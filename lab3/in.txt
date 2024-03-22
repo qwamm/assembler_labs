@@ -1,1 +1,1 @@
-abc def
+The no-operands form of the instruction uses a short form of SCAS. Again, ES:(E)DI is assumed to be the memory

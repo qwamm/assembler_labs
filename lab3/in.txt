@@ -1,2 +1,2 @@
-Oompares  g r t g t4r g  tr g4t grt g 4t a   er er  -ee 0a a y 		a	kkk	u	lll  34r 3545  r gt  the memory byte or word addressed in the destination register relative to the ES segment with the contents of the AL, AX, or EAX register.
-
+Oompares  g r t g t4r g  tr g4t grt g 4t a   er er  -ee 0a a y 		a	kkk	u	lll  34r 3545  r gt
+the memory byte or word addressed in the destination register relative to the ES segment with the contents of the AL, AX, or EAX register.

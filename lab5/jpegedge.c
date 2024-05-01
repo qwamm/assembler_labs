@@ -148,13 +148,6 @@ void write_output_image(struct rgb_image *image, char *filename) {
     jpeg_destroy_compress(&cinfo);
 }
 
-/**
- * @brief Function to compute the new (i.e., transformed) pixel value
- * @param input_image: input image data structure
- * @param row: pixel row
- * @param col: pixel column
- * @param rgb: RGB channel
- */
 unsigned char compute_pixel_value(struct rgb_image *input_image, int row, int col, int channel) {
 
     // If a border pixel, return 0
@@ -162,14 +155,11 @@ unsigned char compute_pixel_value(struct rgb_image *input_image, int row, int co
         return 0;
     }
 
-    //double Gx[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
     double Conv_Matrix[3][3] = {{-1, -1, -1}, {-1, 8, -1}, {-1, -1, -1}};
-    //double S1 = 0;
     double S2 = 0;
 
     for (int i = -1; i <= +1; i++) {
         for (int j = -1; j <= +1; j++) {
-            //S1 += Gx[i+1][j+1] * input_image->RGB[channel][(row + i) * input_image->width + col + j];
             S2 += Conv_Matrix[i+1][j+1] * input_image->RGB[channel][(row + i) * input_image->width + col + j];
         }
     }
@@ -181,11 +171,7 @@ unsigned char compute_pixel_value(struct rgb_image *input_image, int row, int co
 }
 
 
-/**
- * @brief Function that applies a filter to the input image for generating the output image pixels
- * @param input_image: the input image data structure
- * @param output_image: the output image data structure
- */
+
 void apply_filter(struct rgb_image *input_image, struct rgb_image *output_image) {
     int row, col, rgb;
 

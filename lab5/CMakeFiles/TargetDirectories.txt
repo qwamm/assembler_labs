@@ -1,7 +1,7 @@
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/jpegedge.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/edit_cache.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/rebuild_cache.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/list_install_components.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/install.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/install/local.dir
-/home/fdfdas/assembler_labs/lab5/CMakeFiles/install/strip.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/jpegedge.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/edit_cache.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/rebuild_cache.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/list_install_components.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/install.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/install/local.dir
+/home/students/a/afonin.is/assembler_labs/lab5/CMakeFiles/install/strip.dir

@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-extern unsigned char compute_pixel(int, int);
+#include "test.h"
 
 int main()
 {

@@ -1,1 +1,1 @@
-/usr/bin/cc -rdynamic -fopenmp CMakeFiles/jpegedge.dir/jpegedge.c.o -o jpegedge  -ljpeg -lpng -lm 
+/usr/bin/cc -rdynamic -fopenmp CMakeFiles/jpegedge.dir/jpegedge.c.o -o jpegedge  -lJPEG_LIB-NOTFOUND -lpng -lm 

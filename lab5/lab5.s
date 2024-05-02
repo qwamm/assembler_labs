@@ -9,8 +9,8 @@ conv_matrix:
 
 section .text
 
-global compute_pixel_value
-compute_pixel_value:
-	add rdi, rsi
-	mov rax, rdi
+global compute_pixel
+compute_pixel:
+	sub rsi, rdi
+	mov rax, rsi
 	ret
